@@ -12,7 +12,7 @@ The module's primary function is to:
 - **Optionally convert** the parsed expressions back into SQL.
 - Allow **server-side row filtering** using DuckDB, before returning data via Arrow Flight.
 
-> **Note**: The JSON format used by Airport differs from the built-in DuckDB JSON serialization. Specifically, binary values are encoded using **Base64** in Airport for UTF-8 compatibility.
+> **Note**: The JSON format used by [Airport](https://airport.query.farm) differs from the built-in DuckDB JSON serialization. Specifically, binary values are encoded using **Base64** in Airport for UTF-8 compatibility.
 
 ---
 
@@ -33,7 +33,7 @@ column_names_by_index = ['first_name', 'last_name']
 #
 # The DuckDB data typestypes of the columns bound by the expressions
 # will be returned.
-sql, bound_types = expression.convert_to_sql(
+sql, bound_types = Expression.convert_to_sql(
     source=expressions,
     bound_column_names=column_names_by_index
 )
@@ -96,6 +96,10 @@ SELECT v FROM test_type_int64 WHERE v = 1234567890123456789;
   }
 ]
 ```
+
+## Author
+
+This Python module was created by [Query.Farm](https://query.farm).
 
 ## License
 
