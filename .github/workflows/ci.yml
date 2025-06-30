@@ -37,4 +37,4 @@ jobs:
         run: rye run ruff check .
 
       - name: Run tests
-        run: rye run test
+        run: rye test
