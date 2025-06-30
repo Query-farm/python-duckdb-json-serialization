@@ -26,7 +26,7 @@ Repository = "https://github.com/query-farm/python-duckdb-json-serilization.git"
 Issues = "https://github.com/query-farm/python-duckdb-json-serialization/issues"
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling==1.26.3", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [tool.rye]
