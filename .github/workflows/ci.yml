@@ -31,7 +31,7 @@ jobs:
             ${{ runner.os }}-rye-
 
       - name: Sync dependencies
-        run: rye sync --no-dev
+        run: rye sync
 
       - name: Lint & Format (Ruff)
         run: rye run ruff check .
