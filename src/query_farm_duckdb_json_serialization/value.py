@@ -102,7 +102,11 @@ class Value_bit(ValueBase):
             return "null"
         assert self.value
 
-        data = self.value.base64 if isinstance(self.value, ValueValue_base64) else self.value
+        data = (
+            self.value.base64
+            if isinstance(self.value, ValueValue_base64)
+            else self.value
+        )
 
         if not data or len(data) < 2:
             return ""
@@ -421,7 +425,9 @@ class Value_time(ValueBase):
 
         return (
             "TIME '"
-            + time(hours, minutes, seconds, microsecond=t.microseconds).strftime("%H:%M:%S.%f")
+            + time(hours, minutes, seconds, microsecond=t.microseconds).strftime(
+                "%H:%M:%S.%f"
+            )
             + "'"
         )
 
@@ -449,7 +455,9 @@ class Value_time_with_time_zone(ValueBase):
 
         return (
             "TIMETZ '"
-            + time(hours, minutes, seconds, microsecond=t.microseconds).strftime("%H:%M:%S.%f")
+            + time(hours, minutes, seconds, microsecond=t.microseconds).strftime(
+                "%H:%M:%S.%f"
+            )
             + "'"
         )
 
@@ -542,8 +550,13 @@ class Value_timestamp_ns(ValueBase):
     def sql(self) -> str:
         if self.is_null:
             return "null"
+        assert self.value
+        ns_since_epoch = self.value
+        seconds, nanoseconds = divmod(ns_since_epoch, 10**9)
 
-        return f"make_timestamp_ns({self.value}::bigint)"
+        dt = datetime.fromtimestamp(seconds, tz=UTC)
+        formatted = dt.strftime("%Y-%m-%dT%H:%M:%S") + f".{nanoseconds:09d}"
+        return f"TIMESTAMP_NS '{formatted}'"
 
 
 class ValueType_timestamp_s(BaseModel):
@@ -841,7 +854,10 @@ class ValueType_struct(BaseModel):
         return (
             "STRUCT("
             + ",".join(
-                [f'"{child.first}" {child.second.sql()}' for child in self.type_info.child_types]
+                [
+                    f'"{child.first}" {child.second.sql()}'
+                    for child in self.type_info.child_types
+                ]
             )
             + ")"
         )
@@ -861,7 +877,10 @@ class Value_struct(ValueBase):
         return (
             "{"
             + ",".join(
-                [f"'{name}':" + value.sql() for name, value in zip(names, values, strict=True)]
+                [
+                    f"'{name}':" + value.sql()
+                    for name, value in zip(names, values, strict=True)
+                ]
             )
             + "}"
         )

@@ -1,6 +1,6 @@
 [project]
 name = "query-farm-duckdb-json-serialization"
-version = "0.1.1"
+version = "0.1.2"
 description = "Integrate with DuckDB's JSON serialization of expressions and values"
 authors = [
     { name = "Rusty Conover", email = "rusty@query.farm" }

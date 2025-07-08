@@ -12,7 +12,7 @@
 -e file:.
 annotated-types==0.7.0
     # via pydantic
-coverage==7.9.1
+coverage==7.9.2
     # via pytest-cov
 filelock==3.18.0
     # via pytest-mypy
@@ -43,8 +43,8 @@ pytest==8.4.1
 pytest-cov==6.2.1
 pytest-env==1.1.5
 pytest-mypy==1.0.1
-ruff==0.12.1
-typing-extensions==4.14.0
+ruff==0.12.2
+typing-extensions==4.14.1
     # via mypy
     # via pydantic
     # via pydantic-core
